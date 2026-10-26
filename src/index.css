@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Default Theme: Niyantran Light Neutral — high readability for review-heavy workflows */
+  :root,
+  .theme-experimental {
+    --background: #F5F7FB;
+    --surface: #FFFFFF;
+    --surface-elevated: #F8FAFD;
+    --surface-hover: #EEF3F9;
+    --surface-secondary: #F1F5F9;
+
+    --text-primary: #172B4D;
+    --text-secondary: #52637A;
+    --text-muted: #75839A;
+
+    --border: #DCE4EE;
+    --border-strong: #C4D1E0;
+    --border-subtle: rgba(23, 43, 77, 0.10);
+
+    --accent: #2457C5;
+    --accent-hover: #1D46A0;
+    --accent-foreground: #FFFFFF;
+    --accent-secondary: #64748B;
+    --accent-glow: rgba(36, 87, 197, 0.12);
+
+    --input-background: #FFFFFF;
+    --input-text: #172B4D;
+    --popover-background: #FFFFFF;
+    --popover-text: #172B4D;
+    --focus-ring: rgba(36, 87, 197, 0.28);
+
+    --status-success: #187347;
+    --status-warning: #A16207;
+    --status-pending: #946200;
+    --status-error: #B42318;
+  }
+
+  /* Alternative Preset: Obsidian Command */
+  .theme-obsidian {
+    --background: #090D14;
+    --surface: #131A26;
+    --surface-elevated: #1B2434;
+    --surface-hover: #243044;
+    --surface-secondary: #2E3C54;
+    
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    
+    --border: rgba(62, 79, 105, 0.45);
+    --border-strong: #3E4F69;
+    --border-subtle: rgba(62, 79, 105, 0.25);
+    
+    --accent: #5B8CFF;
+    --accent-hover: #759EFF;
+    --accent-foreground: #FFFFFF;
+    --accent-glow: rgba(91, 140, 255, 0.3);
+    
+    --input-background: #0F1622;
+    --input-text: #F1F5F9;
+    --popover-background: #1B2434;
+    --popover-text: #F1F5F9;
+    --focus-ring: #5B8CFF;
+    
+    --status-success: #22C55E;
+    --status-warning: #F97316;
+    --status-pending: #FACC15;
+    --status-error: #EF4444;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  /* Explicit theme-aware styles for native selects and options to avoid OS whiteout */
+  select,
+  select option {
+    background-color: var(--input-background) !important;
+    color: var(--input-text) !important;
+  }
+
+  /* Form inputs and textareas */
+  input,
+  textarea {
+    background-color: var(--input-background);
+    color: var(--input-text);
+  }
+}
+
+/* Custom Softer Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* Solid, theme-aware menus remain readable over charts and tables. */
+.dropdown-menu {
+  background-color: var(--popover-background) !important;
+  color: var(--popover-text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+  z-index: 1000 !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.theme-obsidian .dropdown-menu {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dropdown-item {
+  transition: background-color 0.15s ease-in-out;
+  border-radius: 6px;
+}
+
+.dropdown-item:hover {
+  background-color: var(--surface-hover) !important;
+  color: var(--text-primary) !important;
+}
+
+.theme-obsidian .dropdown-item:hover {
+  background-color: var(--surface-hover) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Primary Action Button Styling */
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+
+/* Shared polish for a calm, information-first regulatory workbench. */
+.app-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(23, 43, 77, 0.025), 0 8px 24px rgba(23, 43, 77, 0.035);
+}
+
+.page-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.table-row-interactive {
+  transition: background-color 140ms ease;
+}
+
+.table-row-interactive:hover {
+  background: var(--surface-hover);
+}
+
+::selection {
+  color: var(--text-primary);
+  background: var(--accent-glow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Semantic foreground contrast corrections for the default light palette. */
+.theme-experimental .text-rose-400,
+.theme-experimental .text-rose-300,
+.theme-experimental .text-red-400 { color: #B42318 !important; }
+.theme-experimental .text-emerald-400 { color: #187347 !important; }
+.theme-experimental .text-amber-400,
+.theme-experimental .text-amber-300,
+.theme-experimental .text-yellow-400 { color: #946200 !important; }
+.theme-experimental .text-sky-400,
+.theme-experimental .text-blue-400 { color: #175CD3 !important; }
+.theme-experimental .text-cyan-400,
+.theme-experimental .text-cyan-300 { color: #0E7490 !important; }
